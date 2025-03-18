@@ -3,18 +3,22 @@ import "./Header.css";
 import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
 import { useEffect, useRef, useState } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRange } from "react-date-range";
+import { format } from "date-fns";
 
 function Header() {
   const [destination, setDestination] = useState("");
+
+  // Guest options
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     Adult: 1,
     Children: 0,
     Room: 1,
   });
-
   const [isDesktop, setIsDesktop] = useState(false);
-
   useEffect(() => {
     const checkDesktop = () => {
       setIsDesktop(window.innerWidth > 1024); // true if width > 1024px
@@ -28,7 +32,6 @@ function Header() {
       window.removeEventListener("resize", checkDesktop);
     };
   }, []);
-
   const handleOptions = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -37,6 +40,17 @@ function Header() {
       };
     });
   };
+
+  //Date options
+  const [openDate, setOpenDate] = useState(false);
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
+
   return (
     <div id="header" className="w-full h-screen relative ">
       <div className="container mx-auto h-full flex items-center headerContent px-4 sm:px-0">
@@ -65,7 +79,26 @@ function Header() {
         </div>
         <div className="headerSearchItem ">
           <HiCalendar className="headerIcon dateIcon text-blue-800" />
-          <p>2023/20/12 to 20203/24/12</p>
+          <div
+            onClick={() => {
+              setOpenDate(!openDate);
+            }}
+            id="dateDropDown"
+          >
+            {`${format(date[0].startDate, "yyyy-MM-dd")} to ${format(
+              date[0].endDate,
+              "yyyy-MM-dd"
+            )}`}
+          </div>
+          {openDate && (
+            <DateRange
+              onChange={(item) => setDate([item.selection])}
+              ranges={date}
+              className="date modal-absolout"
+              minDate={new Date()}
+              moveRangeOnFirstSelection={true}
+            />
+          )}
         </div>
         <div className="headerSearchItem  ">
           <div
@@ -92,6 +125,7 @@ function Header() {
           </button>
         </div>
       </div>
+      {/* Open GuestList Modal */}
       {openOptions && !isDesktop && (
         <>
           <div className="overlay fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-40"></div>
@@ -116,10 +150,7 @@ function GuestOptionsList({ options, handleOptions, setOpenOptions }) {
   useOutsideClick(optionsRef, "optionDropDown", () => setOpenOptions(false));
 
   return (
-    <div
-      ref={optionsRef}
-      className="guestOptions bg-white shadow-lg rounded-lg p-4 border border-gray-200 absolute top-20 w-56 z-50"
-    >
+    <div ref={optionsRef} className="guestOptions modal-absolout">
       <OptionItem
         type="Adult"
         options={options}
@@ -142,7 +173,7 @@ function GuestOptionsList({ options, handleOptions, setOpenOptions }) {
   );
 }
 
-//mobile -> modal form from bottom:
+//mobile -> modal:
 function GuestOptionsListMobile({
   options,
   handleOptions,
