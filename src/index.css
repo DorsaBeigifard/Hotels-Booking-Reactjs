@@ -83,11 +83,5 @@
 }
 
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
-  z-index: 40; /* Ensure it’s behind the modal, but above other content */
+  @apply fixed inset-0 bg-black bg-opacity-50 z-40;
 }

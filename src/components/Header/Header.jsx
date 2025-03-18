@@ -126,7 +126,7 @@ function Header() {
       {/* Open GuestList Modal */}
       {openOptions && !isDesktop && (
         <>
-          <div className="overlay fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-40"></div>
+          <div className="overlay "></div>
           <GuestOptionsListMobile
             handleOptions={handleOptions}
             options={options}
@@ -137,7 +137,7 @@ function Header() {
       )}
       {openDate && !isDesktop && (
         <>
-          <div className="overlay fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-40"></div>
+          <div className="overlay "></div>
           <DateRangeMobile
             date={date}
             setDate={setDate}
