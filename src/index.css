@@ -63,11 +63,15 @@
   }
 
   .modal {
-    @apply fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-t-lg p-4 px-8 border-t border-gray-200 z-50 h-80 flex flex-col gap-8;
+    @apply fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-t-lg p-4 px-8 border-t border-gray-200 z-50 h-auto flex flex-col gap-8;
   }
 
-  .modal-absolout {
+  .optionsModalAbsolute {
     @apply bg-white shadow-lg rounded-lg p-4 border border-gray-200 absolute top-20  z-50;
+  }
+
+  .dateModalAbsolut {
+    @apply bg-white shadow-lg rounded-lg p-4 border border-gray-200 absolute top-20 right-117  z-50;
   }
 }
 

@@ -90,13 +90,11 @@ function Header() {
               "yyyy-MM-dd"
             )}`}
           </div>
-          {openDate && (
-            <DateRange
-              onChange={(item) => setDate([item.selection])}
-              ranges={date}
-              className="date modal-absolout"
-              minDate={new Date()}
-              moveRangeOnFirstSelection={true}
+          {openDate && isDesktop && (
+            <DateRangeDesktop
+              setDate={setDate}
+              date={date}
+              setOpenDate={setOpenDate}
             />
           )}
         </div>
@@ -121,7 +119,7 @@ function Header() {
         <div className="headerSearchItem btn flex items-center justify-center gap-2">
           <button className="headerSearchBtn">
             <HiSearch className="headerIcon hidden lg:inline " />
-            <span className=" lg:hidden">Search for Deals</span>
+            <span className="lg:hidden">Search for Deals</span>
           </button>
         </div>
       </div>
@@ -134,6 +132,16 @@ function Header() {
             options={options}
             setOpenOptions={setOpenOptions}
             openOptions={openOptions}
+          />
+        </>
+      )}
+      {openDate && !isDesktop && (
+        <>
+          <div className="overlay fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-40"></div>
+          <DateRangeMobile
+            date={date}
+            setDate={setDate}
+            setOpenDate={setOpenDate}
           />
         </>
       )}
@@ -150,7 +158,7 @@ function GuestOptionsList({ options, handleOptions, setOpenOptions }) {
   useOutsideClick(optionsRef, "optionDropDown", () => setOpenOptions(false));
 
   return (
-    <div ref={optionsRef} className="guestOptions modal-absolout">
+    <div ref={optionsRef} className="guestOptions optionsModalAbsolute">
       <OptionItem
         type="Adult"
         options={options}
@@ -235,6 +243,42 @@ function OptionItem({ options, type, minLimit, handleOptions }) {
           <HiPlus />
         </button>
       </div>
+    </div>
+  );
+}
+
+function DateRangeDesktop({ setDate, date, setOpenDate }) {
+  const dateRef = useRef();
+  useOutsideClick(dateRef, "dateDropDown", () => setOpenDate(false));
+  return (
+    <div ref={dateRef} className="">
+      <DateRange
+        onChange={(item) => setDate([item.selection])}
+        ranges={date}
+        className="date dateModalAbsolut"
+        minDate={new Date()}
+        moveRangeOnFirstSelection={true}
+      />
+    </div>
+  );
+}
+
+function DateRangeMobile({ date, setDate, setOpenDate }) {
+  const dateRef = useRef();
+  useOutsideClick(dateRef, "dateDropDown", () => setOpenDate(false));
+  return (
+    <div ref={dateRef} className="modal">
+      <div className="font-bold">Select Dates</div>
+      <DateRange
+        onChange={(item) => setDate([item.selection])}
+        ranges={date}
+        className="date "
+        minDate={new Date()}
+        moveRangeOnFirstSelection={true}
+      />
+      <button onClick={() => setOpenDate(false)} className="btn">
+        Save Changes
+      </button>
     </div>
   );
 }
