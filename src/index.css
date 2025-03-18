@@ -2,6 +2,46 @@
 
 @layer base {
   :root {
-    --color: #a44a8a;
+    --color-primary-500: #3b82f6;
+    --color-secondary-500: #facc15;
+    --color-red-warning: #b91c1c;
+  }
+
+  .nav-link {
+    @apply relative transition-all;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary-500);
+    transition: width 0.3s ease-in-out;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link-active {
+    @apply font-medium;
+  }
+}
+
+@layer components {
+  .headerSearch {
+    @apply bg-white  shadow-[-1px_19px_65px_-25px_rgba(0,0,0,0.75)] flex flex-col gap-4 p-4 rounded-xl lg:rounded-2xl lg:flex-row lg:p-8 lg:gap-12 lg:items-center lg:justify-evenly;
+  }
+
+  .headerSearchItem {
+    @apply flex gap-2 items-center;
+  }
+
+  .btn {
+    background-color: var(--color-primary-500);
+    @apply text-white py-2 px-6 rounded-lg cursor-pointer;
   }
 }
