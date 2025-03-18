@@ -1,7 +1,7 @@
 import { MdLocationOn } from "react-icons/md";
 import "./Header.css";
 import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
 function Header() {
@@ -12,6 +12,22 @@ function Header() {
     Children: 0,
     Room: 1,
   });
+
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth > 1024); // true if width > 1024px
+    };
+    checkDesktop();
+
+    window.addEventListener("resize", checkDesktop);
+
+    // Clean up
+    return () => {
+      window.removeEventListener("resize", checkDesktop);
+    };
+  }, []);
 
   const handleOptions = (name, operation) => {
     setOptions((prev) => {
@@ -25,11 +41,11 @@ function Header() {
     <div id="header" className="w-full h-screen relative ">
       <div className="container mx-auto h-full flex items-center headerContent px-4 sm:px-0">
         <div className="desc">
-          <h1 className="text-6xl font-bold text-white z-20 relative mb-4 ">
-            <span className="text-9xl">100+</span>
+          <h1 className="text-4xl md:text-6xl font-bold text-white z-20 relative mb-4 ">
+            <span className=" text-6xl md:text-9xl">100+</span>
             <br /> Destinations
           </h1>
-          <p className="text-2xl text-white z-10 relative font-normal">
+          <p className="text-xl md:text-2xl text-white z-10 relative font-normal">
             Amazing deals just a click away.
           </p>
         </div>
@@ -60,7 +76,8 @@ function Header() {
             {options.Adult} adult &nbsp;&bull;&nbsp; {options.Children} children
             &nbsp;&bull;&nbsp; {options.Room} room
           </div>
-          {openOptions && (
+          {/* Conditionally render based on screen size */}
+          {openOptions && isDesktop && (
             <GuestOptionsList
               handleOptions={handleOptions}
               options={options}
@@ -75,18 +92,25 @@ function Header() {
           </button>
         </div>
       </div>
+      {openOptions && !isDesktop && (
+        <>
+          <div className="overlay fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-40"></div>
+          <GuestOptionsListMobile
+            handleOptions={handleOptions}
+            options={options}
+            setOpenOptions={setOpenOptions}
+            openOptions={openOptions}
+          />
+        </>
+      )}
     </div>
   );
 }
 
 export default Header;
 
-function GuestOptionsList({
-  options,
-  handleOptions,
-  setOpenOptions,
-  optionDropDown,
-}) {
+// Desktop
+function GuestOptionsList({ options, handleOptions, setOpenOptions }) {
   const optionsRef = useRef(); //ref.current=== guesOptions div
 
   useOutsideClick(optionsRef, "optionDropDown", () => setOpenOptions(false));
@@ -118,6 +142,46 @@ function GuestOptionsList({
   );
 }
 
+//mobile -> modal form from bottom:
+function GuestOptionsListMobile({
+  options,
+  handleOptions,
+  setOpenOptions,
+  openOptions,
+}) {
+  const optionsRef = useRef();
+
+  useOutsideClick(optionsRef, "optionDropDown", () => setOpenOptions(false));
+  return (
+    <div ref={optionsRef} className="guestOptions modal">
+      <div className="font-bold ">Set Your Preferences</div>
+      <div>
+        <OptionItem
+          type="Adult"
+          options={options}
+          minLimit={1}
+          handleOptions={handleOptions}
+        />
+        <OptionItem
+          type="Children"
+          options={options}
+          minLimit={0}
+          handleOptions={handleOptions}
+        />
+        <OptionItem
+          type="Room"
+          options={options}
+          minLimit={1}
+          handleOptions={handleOptions}
+        />
+      </div>
+      <button className="btn" onClick={() => setOpenOptions(!openOptions)}>
+        Save Changes
+      </button>
+    </div>
+  );
+}
+
 function OptionItem({ options, type, minLimit, handleOptions }) {
   return (
     <div className="guestOptionsItem flex items-center justify-between gap-4 mb-4">
@@ -143,5 +207,3 @@ function OptionItem({ options, type, minLimit, handleOptions }) {
     </div>
   );
 }
-
-function GuestOptionsListMobile() {}

@@ -61,6 +61,10 @@
       @apply px-6 text-lg font-medium;
     }
   }
+
+  .modal {
+    @apply fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-t-lg p-4 px-8 border-t border-gray-200 z-50 h-80 flex flex-col gap-8;
+  }
 }
 
 .optionCounterBtn {
@@ -68,4 +72,14 @@
 }
 .optionCounterBtn:hover {
   @apply bg-yellow-400;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
+  z-index: 40; /* Ensure it’s behind the modal, but above other content */
 }
