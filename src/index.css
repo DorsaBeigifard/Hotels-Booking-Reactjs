@@ -32,16 +32,33 @@
 }
 
 @layer components {
+  .btn {
+    background-color: var(--color-primary-500);
+    @apply text-white py-2 px-4 rounded-lg cursor-pointer;
+  }
+
+  .input {
+    @apply w-full bg-gray-50 text-gray-700 py-1 px-4 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all ease-in-out;
+  }
+
+  .headerIcon {
+    @apply text-2xl;
+  }
+
   .headerSearch {
-    @apply bg-white  shadow-[-1px_19px_65px_-25px_rgba(0,0,0,0.75)] flex flex-col gap-4 p-4 rounded-xl lg:rounded-2xl lg:flex-row lg:p-8 lg:gap-12 lg:items-center lg:justify-evenly;
+    @apply bg-white shadow-[-1px_19px_65px_-25px_rgba(0,0,0,0.75)] container absolute bottom-[-10rem] lg:bottom-[-2rem]  left-1/2 transform -translate-x-1/2 z-10 flex flex-col lg:flex-row  gap-6 lg:gap-12 p-4 lg:p-8 rounded-xl lg:rounded-2xl w-[90%] sm:w-full lg:items-center lg:justify-evenly;
   }
 
   .headerSearchItem {
     @apply flex gap-2 items-center;
   }
 
-  .btn {
-    background-color: var(--color-primary-500);
-    @apply text-white py-2 px-6 rounded-lg cursor-pointer;
+  .headerSearchBtn {
+    @apply flex items-center justify-center gap-2 rounded-lg transition-all duration-300 text-white;
+  }
+  @media (max-width: 1024px) {
+    .headerSearchBtn {
+      @apply px-6 text-lg font-medium;
+    }
   }
 }
