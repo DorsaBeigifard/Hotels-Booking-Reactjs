@@ -18,7 +18,7 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden sm:flex items-center gap-6">
-          {renderNavLinks(setIsOpen)}
+          <RenderNavLinks setIsOpen={setIsOpen} />
           <button className="btn LoginBtn">Login</button>
         </div>
 
@@ -41,7 +41,7 @@ const Navbar = () => {
           isOpen ? "max-h-40 opacity-100 py-4" : "max-h-0 opacity-0 py-0"
         }`}
       >
-        {renderNavLinks(setIsOpen)}
+        <RenderNavLinks setIsOpen={setIsOpen} />
       </div>
     </div>
   );
@@ -49,7 +49,7 @@ const Navbar = () => {
 
 export default Navbar;
 
-function renderNavLinks(setIsOpen) {
+function RenderNavLinks({ setIsOpen }) {
   const navLinks = [
     { text: "Home", path: "/" },
     { text: "About Us", path: "/about" },
@@ -59,7 +59,7 @@ function renderNavLinks(setIsOpen) {
     <NavLink
       key={path}
       to={path}
-      onClick={() => setIsOpen(false)}
+      onClick={() => setIsOpen(false)} // Close the menu on click for mobile
       className={({ isActive }) =>
         isActive ? "nav-link nav-link-active" : "nav-link"
       }

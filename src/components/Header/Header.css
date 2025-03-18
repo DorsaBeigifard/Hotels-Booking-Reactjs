@@ -18,10 +18,3 @@
   z-index: 1;
 }
 
-.headerSearchItem .seperator {
-  display: inline-block;
-  width: 1px;
-  height: 30px;
-  background-color: black;
-  margin: 0 1rem;
-}

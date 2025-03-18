@@ -62,3 +62,10 @@
     }
   }
 }
+
+.optionCounterBtn {
+  @apply p-2 text-xs rounded-lg text-gray-600 bg-gray-100 cursor-pointer;
+}
+.optionCounterBtn:hover {
+  @apply bg-yellow-400;
+}
