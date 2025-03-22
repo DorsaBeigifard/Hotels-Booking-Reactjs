@@ -126,3 +126,7 @@
 .slick-slide > div {
   margin: 0 0.6rem; /* Adjust the gap as needed */
 }
+body .slick-prev::before,
+body .slick-next::before {
+  display: none;
+}

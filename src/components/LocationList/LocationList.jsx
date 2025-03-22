@@ -26,7 +26,7 @@ function LocationList() {
       </SlickButtonFix>
     ),
     prevArrow: (
-      <SlickButtonFix >
+      <SlickButtonFix>
         <ChevronLeftIcon className="h-8 w-8 text-blue-900 hidden lg:block" />
       </SlickButtonFix>
     ),
