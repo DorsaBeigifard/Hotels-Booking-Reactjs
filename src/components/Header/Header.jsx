@@ -52,8 +52,8 @@ function Header() {
   ]);
 
   return (
-    <div id="header" className="w-full h-screen relative ">
-      <div className="container mx-auto h-full flex items-center headerContent px-4 sm:px-0">
+    <div id="header" className="w-full h-screen relative min-h-[500px] md:min-h-[700px] mb-50 lg:mb-10 ">
+      <div className="container mx-auto sm:px-0 md:px-4  h-full flex items-center headerContent px-4 ">
         <div className="desc">
           <h1 className="text-4xl md:text-6xl font-bold text-white z-20 relative mb-4 ">
             <span className=" text-6xl md:text-9xl">100+</span>
