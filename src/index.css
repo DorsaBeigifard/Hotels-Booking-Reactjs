@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @layer base {
   :root {
     --color-primary-700: #1d4ed8;
@@ -32,8 +33,7 @@
   }
 
   h2 {
-    color: var(--color-primary-500);
-    @apply font-bold text-2xl mb-8;
+    @apply text-2xl mb-2 font-medium;
   }
 
   h3 {
@@ -108,4 +108,8 @@
 
 .section-spacing {
   @apply py-8 lg:py-14;
+}
+
+.slick-slide > div {
+  margin: 0 0.6rem; /* Adjust the gap as needed */
 }
