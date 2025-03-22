@@ -104,7 +104,7 @@
   }
 
   .footer-btn {
-    @apply text-2xl text-white cursor-pointer;
+    @apply text-sm lg:text-2xl text-white cursor-pointer;
   }
 }
 
@@ -124,7 +124,7 @@
 }
 
 .slick-slide > div {
-  margin: 0 0.6rem; /* Adjust the gap as needed */
+  margin: 0 0.6rem;
 }
 body .slick-prev::before,
 body .slick-next::before {

@@ -9,8 +9,8 @@ function Reviews() {
           Hear what our guests have to say about their stays.
         </p>
       </div>
-      <div className="flex items-center justify-center gap-4">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-8 sm:gap-4">
+        <div className="flex flex-col items-center text-center px-8 sm:text-left sm:inline-block">
           <img className="rounded-full h-15 mb-4" src="images/person_1.jpg" />
           <p className="text-gray-700 italic mb-4">
             “Booking was effortless, and the hotel was just as described. The
@@ -18,7 +18,7 @@ function Reviews() {
           </p>
           <p className="italic text-gray-400">— Clare Gupta</p>
         </div>
-        <div>
+        <div className="flex flex-col items-center text-center px-8 sm:text-left sm:inline-block">
           <img className="rounded-full h-15 mb-4" src="images/person_2.jpg" />
           <p className="text-gray-700 italic mb-4">
             “A fantastic experience! The hotel was in the perfect location, and
@@ -26,7 +26,7 @@ function Reviews() {
           </p>
           <p className="italic text-gray-400">— Rogie Slater</p>
         </div>
-        <div>
+        <div className="flex flex-col items-center text-center px-8 sm:text-left sm:inline-block">
           <img className="rounded-full h-15 mb-4" src="images/person_3.jpg" />
           <p className="text-gray-700 italic mb-4">
             “Seamless booking and a wonderful stay! The rooms were clean, and
