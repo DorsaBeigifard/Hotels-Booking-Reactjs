@@ -26,7 +26,7 @@ function LocationList() {
       </SlickButtonFix>
     ),
     prevArrow: (
-      <SlickButtonFix>
+      <SlickButtonFix >
         <ChevronLeftIcon className="h-8 w-8 text-blue-900 hidden lg:block" />
       </SlickButtonFix>
     ),
@@ -60,12 +60,12 @@ function LocationList() {
   };
 
   return (
-    <div className="bg-gray-50 overflow-hidden">
+    <div className="bg-gray-100 overflow-hidden">
       <div className="container mx-auto section-spacing ">
         <div className="nearbyLocations">
           <div className="text-center mb-8">
             <h2>Nearby Locations </h2>
-            <p>
+            <p className="text-gray-600 mt-2">
               Find top-rated hotels near you for a comfortable and convenient
               stay.
             </p>
@@ -84,7 +84,9 @@ function LocationList() {
                   />
                   <div className="locationItemDesc h-30 lg:h-40 p-4 flex flex-col justify-between">
                     <div>
-                      <p className="location font-medium">{item.smart_location}</p>
+                      <p className="location font-medium">
+                        {item.smart_location}
+                      </p>
                       <p className="name mb-4">{item.name}</p>
                     </div>
                     <div className="flex justify-between items-center">

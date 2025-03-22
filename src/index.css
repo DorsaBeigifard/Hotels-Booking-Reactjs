@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 @layer base {
   :root {
     --color-primary-700: #1d4ed8;
@@ -20,7 +19,7 @@
     bottom: 0;
     width: 0;
     height: 2px;
-    background-color: var(--color-primary-500);
+    background-color: var(--color-primary-700);
     transition: width 0.3s ease-in-out;
   }
 
@@ -43,6 +42,10 @@
   p {
     @apply text-sm lg:text-base;
     line-height: 1.5;
+  }
+
+  footer {
+    @apply text-sm;
   }
 }
 
@@ -92,6 +95,16 @@
   .featureIcon {
     color: var(--color-secondary);
     @apply h-8 w-8 lg:h-10 lg:w-10 mb-4;
+  }
+
+  .parallax {
+    @apply bg-center bg-no-repeat bg-cover text-white;
+    background-image: url("/images/3.jpg");
+    background-attachment: fixed;
+  }
+
+  .footer-btn {
+    @apply text-2xl text-white cursor-pointer;
   }
 }
 
