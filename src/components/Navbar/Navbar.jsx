@@ -4,15 +4,14 @@ import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <div className="z-10 py-2">
+    <div className="z-10 py-1  border border-b-1 border-gray-200 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <img
             src="/images/logo-no-background.png"
             alt="logo"
-            className="h-10"
+            className="h-8"
           />
         </div>
 
@@ -59,9 +58,9 @@ function RenderNavLinks({ setIsOpen }) {
     <NavLink
       key={path}
       to={path}
-      onClick={() => setIsOpen(false)} // Close the menu on click for mobile
+      onClick={() => setIsOpen(false)}
       className={({ isActive }) =>
-        isActive ? "nav-link nav-link-active" : "nav-link"
+        `lg:text-sm nav-link ${isActive ? "nav-link-active" : ""}`
       }
     >
       {text}

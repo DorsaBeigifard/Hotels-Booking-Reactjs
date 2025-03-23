@@ -8,6 +8,23 @@
     --color-red-warning: #b91c1c;
   }
 
+  h2 {
+    @apply text-2xl mb-2 font-medium;
+  }
+
+  h3 {
+    @apply font-medium text-sm md:text-base lg:text-xl mb-2;
+  }
+
+  p {
+    @apply text-sm lg:text-base;
+    line-height: 1.5;
+  }
+
+  footer {
+    @apply text-sm;
+  }
+
   .nav-link {
     @apply relative transition-all;
   }
@@ -30,36 +47,19 @@
   .nav-link-active {
     @apply font-medium;
   }
-
-  h2 {
-    @apply text-2xl mb-2 font-medium;
-  }
-
-  h3 {
-    @apply font-medium text-sm md:text-base lg:text-xl mb-2;
-  }
-
-  p {
-    @apply text-sm lg:text-base;
-    line-height: 1.5;
-  }
-
-  footer {
-    @apply text-sm;
-  }
 }
 
 @layer components {
   .btn {
     background-color: var(--color-primary-700);
-    @apply text-white py-2 px-4 rounded-lg cursor-pointer;
+    @apply text-white py-1 px-2 text-sm rounded-lg cursor-pointer transition delay-150 duration-300 ease-in-out hover:bg-yellow-500;
   }
 
   .input {
-    @apply w-full bg-gray-50 text-gray-700 py-1 px-4 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all ease-in-out;
+    @apply w-full bg-gray-50 text-gray-700 py-2 px-4 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all ease-in-out;
   }
 
-  .headerIcon {
+  .searchBarIcon {
     @apply text-2xl;
   }
 
@@ -67,16 +67,20 @@
     @apply bg-white shadow-[-1px_19px_65px_-25px_rgba(0,0,0,0.75)] container absolute bottom-[-10rem] lg:bottom-[-2rem]  left-1/2 transform -translate-x-1/2 z-10 flex flex-col lg:flex-row  gap-6 lg:gap-12 p-4 lg:p-8 rounded-xl lg:rounded-2xl w-[90%] sm:w-full md:w-[95%] lg:items-center lg:justify-evenly;
   }
 
-  .headerSearchItem {
+  .searchBar {
+    @apply bg-white flex flex-col lg:flex-row  gap-6 lg:gap-12 p-4 container mx-auto  lg:p-8 w-full lg:items-center lg:justify-evenly;
+  }
+
+  .searchItem {
     @apply flex gap-2 items-center;
   }
 
-  .headerSearchBtn {
-    @apply flex items-center justify-center gap-2 rounded-lg transition-all duration-300 text-white;
+  .searchBtn {
+    @apply px-2 flex items-center justify-center gap-2  transition-all duration-300 text-white cursor-pointer;
   }
   @media (max-width: 1024px) {
-    .headerSearchBtn {
-      @apply px-6 text-lg font-medium;
+    .searchBtn {
+      @apply px-6 text-base font-medium;
     }
   }
 

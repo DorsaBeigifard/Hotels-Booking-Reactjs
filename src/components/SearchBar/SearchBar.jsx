@@ -1,14 +1,16 @@
-import { MdLocationOn } from "react-icons/md";
-import "./Header.css";
-import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
-import { useEffect, useRef, useState } from "react";
-import useOutsideClick from "../../hooks/useOutsideClick";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
+import useOutsideClick from "../../hooks/useOutsideClick";
+import { useEffect, useRef, useState } from "react";
+import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
+import { MdLocationOn } from "react-icons/md";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
-function Header() {
+function SearchBar({ searchBarClasses }) {
   const [destination, setDestination] = useState("");
 
   // Guest options
@@ -41,6 +43,23 @@ function Header() {
     });
   };
 
+  const navigate = useNavigate();
+
+  //   const [searchParams, setSearchParam] = useSearchParams();
+
+  const handleSearch = () => {
+    const encodedParams = createSearchParams({
+      destination,
+      date: JSON.stringify(date),
+      options: JSON.stringify(options),
+    });
+    // setSearchParam(encodedParams);
+    navigate({
+      pathname: "/hotels",
+      search: encodedParams.toString(),
+    });
+  };
+
   //Date options
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
@@ -50,36 +69,25 @@ function Header() {
       key: "selection",
     },
   ]);
-
   return (
-    <div id="header" className="w-full h-screen relative min-h-[500px] md:min-h-[700px] mb-50 lg:mb-10 ">
-      <div className="container mx-auto sm:px-0 md:px-4  h-full flex items-center headerContent px-4 ">
-        <div className="desc">
-          <h1 className="text-4xl md:text-6xl font-bold text-white z-20 relative mb-4 ">
-            <span className=" text-6xl md:text-9xl">100+</span>
-            <br /> Destinations
-          </h1>
-          <p className="text-xl md:text-2xl text-white z-10 relative font-normal">
-            Amazing deals just a click away.
-          </p>
-        </div>
-      </div>
-      <div className="headerSearch  ">
-        <div className="headerSearchItem">
-          <MdLocationOn className="text-red-600 headerIcon " />
+    <div>
+      <div className={`${searchBarClasses}`}>
+        <div className="searchItem">
+          <MdLocationOn className="text-red-600 searchBarIcon " />
           <input
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
             type="text"
             placeholder="Type your destination..."
-            className="headerSearchInput input"
+            className="searchInput input"
             name="destination"
             id="destination"
           />
         </div>
-        <div className="headerSearchItem ">
-          <HiCalendar className="headerIcon dateIcon text-blue-800" />
+        <div className="searchItem ">
+          <HiCalendar className="searchBarIcon dateIcon text-blue-800" />
           <div
+            className="cursor-pointer"
             onClick={() => {
               setOpenDate(!openDate);
             }}
@@ -98,7 +106,7 @@ function Header() {
             />
           )}
         </div>
-        <div className="headerSearchItem  ">
+        <div className="searchItem  ">
           <div
             id="optionDropDown"
             onClick={() => setOpenOptions(!openOptions)}
@@ -116,9 +124,9 @@ function Header() {
             />
           )}
         </div>
-        <div className="headerSearchItem btn flex items-center justify-center gap-2">
-          <button className="headerSearchBtn">
-            <HiSearch className="headerIcon hidden lg:inline " />
+        <div className=" btn searchItem  flex items-center justify-center gap-2">
+          <button className="searchBtn" onClick={handleSearch}>
+            <HiSearch className="searchBarIcon hidden lg:inline " />
             <span className="lg:hidden">Search for Deals</span>
           </button>
         </div>
@@ -149,7 +157,7 @@ function Header() {
   );
 }
 
-export default Header;
+export default SearchBar;
 
 // Desktop
 function GuestOptionsList({ options, handleOptions, setOpenOptions }) {
