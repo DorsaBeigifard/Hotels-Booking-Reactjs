@@ -78,7 +78,7 @@ function LocationList() {
                   key={item.id}
                 >
                   <img
-                    src={item.thumbnail_url}
+                    src={item.medium_url}
                     alt={item.name}
                     className="w-full h-50 object-cover"
                   />
@@ -93,7 +93,9 @@ function LocationList() {
                       <p className="price font-bold">
                         €&nbsp;{item.price}&nbsp;<span>per night</span>
                       </p>
-                      <button className="text-blue-700">See Details</button>
+                      <button className="text-blue-700 delay-100 ease-in-out transition-all hover:text-yellow-500">
+                        See Details
+                      </button>
                     </div>
                   </div>
                 </div>

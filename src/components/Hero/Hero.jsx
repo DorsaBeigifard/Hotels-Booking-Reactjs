@@ -23,7 +23,11 @@ function Hero() {
           </p>
         </div>
       </div>
-      <SearchBar searchBarClasses={searchBarClasses} />
+      <SearchBar
+        searchBarClasses={searchBarClasses}
+        dateAbsolut="top-20 right-117"
+        optionAbsolut="top-20"
+      />
     </div>
   );
 }

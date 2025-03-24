@@ -10,15 +10,18 @@ import {
   useSearchParams,
 } from "react-router-dom";
 
-function SearchBar({ searchBarClasses }) {
-  const [destination, setDestination] = useState("");
+function SearchBar({ searchBarClasses, dateAbsolut, optionAbsolut }) {
+  const [searchParams, setSearchParam] = useSearchParams();
+  const [destination, setDestination] = useState(
+    searchParams.get("destination") || ""
+  );
 
   // Guest options
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
-    Adult: 1,
-    Children: 0,
-    Room: 1,
+    adult: 1,
+    children: 0,
+    room: 1,
   });
   const [isDesktop, setIsDesktop] = useState(false);
   useEffect(() => {
@@ -44,8 +47,6 @@ function SearchBar({ searchBarClasses }) {
   };
 
   const navigate = useNavigate();
-
-  //   const [searchParams, setSearchParam] = useSearchParams();
 
   const handleSearch = () => {
     const encodedParams = createSearchParams({
@@ -84,6 +85,7 @@ function SearchBar({ searchBarClasses }) {
             id="destination"
           />
         </div>
+
         <div className="searchItem ">
           <HiCalendar className="searchBarIcon dateIcon text-blue-800" />
           <div
@@ -103,6 +105,7 @@ function SearchBar({ searchBarClasses }) {
               setDate={setDate}
               date={date}
               setOpenDate={setOpenDate}
+              dateAbsolut={dateAbsolut}
             />
           )}
         </div>
@@ -112,8 +115,8 @@ function SearchBar({ searchBarClasses }) {
             onClick={() => setOpenOptions(!openOptions)}
             className="cursor-pointer"
           >
-            {options.Adult} adult &nbsp;&bull;&nbsp; {options.Children} children
-            &nbsp;&bull;&nbsp; {options.Room} room
+            {options.adult} adult &nbsp;&bull;&nbsp; {options.children} children
+            &nbsp;&bull;&nbsp; {options.room} room
           </div>
           {/* Conditionally render based on screen size */}
           {openOptions && isDesktop && (
@@ -121,10 +124,11 @@ function SearchBar({ searchBarClasses }) {
               handleOptions={handleOptions}
               options={options}
               setOpenOptions={setOpenOptions}
+              optionAbsolut={optionAbsolut}
             />
           )}
         </div>
-        <div className=" btn searchItem  flex items-center justify-center gap-2">
+        <div className=" searchItem  flex items-center justify-center gap-2">
           <button className="searchBtn" onClick={handleSearch}>
             <HiSearch className="searchBarIcon hidden lg:inline " />
             <span className="lg:hidden">Search for Deals</span>
@@ -160,27 +164,35 @@ function SearchBar({ searchBarClasses }) {
 export default SearchBar;
 
 // Desktop
-function GuestOptionsList({ options, handleOptions, setOpenOptions }) {
+function GuestOptionsList({
+  options,
+  handleOptions,
+  setOpenOptions,
+  optionAbsolut,
+}) {
   const optionsRef = useRef(); //ref.current=== guesOptions div
 
   useOutsideClick(optionsRef, "optionDropDown", () => setOpenOptions(false));
 
   return (
-    <div ref={optionsRef} className="guestOptions optionsModalAbsolute">
+    <div
+      ref={optionsRef}
+      className={`guestOptions optionsModalAbsolute ${optionAbsolut}`}
+    >
       <OptionItem
-        type="Adult"
+        type="adult"
         options={options}
         minLimit={1}
         handleOptions={handleOptions}
       />
       <OptionItem
-        type="Children"
+        type="children"
         options={options}
         minLimit={0}
         handleOptions={handleOptions}
       />
       <OptionItem
-        type="Room"
+        type="room"
         options={options}
         minLimit={1}
         handleOptions={handleOptions}
@@ -204,19 +216,19 @@ function GuestOptionsListMobile({
       <div className="font-bold ">Set Your Preferences</div>
       <div>
         <OptionItem
-          type="Adult"
+          type="adult"
           options={options}
           minLimit={1}
           handleOptions={handleOptions}
         />
         <OptionItem
-          type="Children"
+          type="children"
           options={options}
           minLimit={0}
           handleOptions={handleOptions}
         />
         <OptionItem
-          type="Room"
+          type="room"
           options={options}
           minLimit={1}
           handleOptions={handleOptions}
@@ -255,7 +267,7 @@ function OptionItem({ options, type, minLimit, handleOptions }) {
   );
 }
 
-function DateRangeDesktop({ setDate, date, setOpenDate }) {
+function DateRangeDesktop({ setDate, date, setOpenDate, dateAbsolut }) {
   const dateRef = useRef();
   useOutsideClick(dateRef, "dateDropDown", () => setOpenDate(false));
   return (
@@ -263,7 +275,7 @@ function DateRangeDesktop({ setDate, date, setOpenDate }) {
       <DateRange
         onChange={(item) => setDate([item.selection])}
         ranges={date}
-        className="date dateModalAbsolut"
+        className={`date dateModalAbsolut ${dateAbsolut}`}
         minDate={new Date()}
         moveRangeOnFirstSelection={true}
       />
