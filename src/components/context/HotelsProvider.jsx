@@ -7,7 +7,7 @@ const HotelContext = createContext();
 function HotelsProvider({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const destination = searchParams.get("destination");
-  const room = JSON.parse(searchParams.get("options")).room;
+  const room = JSON.parse(searchParams.get("options") || "{}")?.room || 1;
 
   const { isLoading, data: hotels } = useFetch(
     "http://localhost:5000/hotels",

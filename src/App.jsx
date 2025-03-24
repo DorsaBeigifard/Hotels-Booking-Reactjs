@@ -10,6 +10,7 @@ import HotelsLayout from "./components/HotelsLayout/HotelsLayout";
 import HotelsPage from "./components/HotelsPage/HotelsPage";
 import SingleHotelDetails from "./components/SingleHotelDetails/SingleHotelDetails";
 import HotelsProvider from "./components/context/HotelsProvider";
+import "./App.css";
 
 const App = () => {
   return (
@@ -31,7 +32,7 @@ const App = () => {
         </div>
         <Footer />
       </div>
-     </HotelsProvider>
+    </HotelsProvider>
   );
 };
 
