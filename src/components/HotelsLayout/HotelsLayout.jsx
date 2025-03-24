@@ -1,6 +1,7 @@
 import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { Outlet } from "react-router-dom";
+import Map from "../Map/Map";
 
 function HotelsLayout() {
   return (
@@ -14,11 +15,11 @@ function HotelsLayout() {
           />
         </div>
       )}
-      <div className="flex flex-col lg:flex-row justify-between h-[calc(100vh-185px)] items-stretch container mx-auto">
-        <div className="h-[45%] lg:h-full lg:w-[45%] overflow-y-scroll pr-4 pt-4">
+      <div className="flex flex-col lg:flex-row justify-between h-[calc(100vh-153px)] items-stretch container mx-auto">
+        <div className="h-[45%] lg:h-full lg:w-[45%] overflow-y-scroll overflow-x-hidden pr-4 pt-4">
           <Outlet />
         </div>
-        <div className="map bg-amber-800 flex-1">map</div>
+        <Map />
       </div>
     </div>
   );

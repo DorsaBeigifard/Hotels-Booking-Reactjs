@@ -1,36 +1,29 @@
-import { Link, useSearchParams } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
+import { Link } from "react-router-dom";
+import { useHotels } from "../context/HotelsProvider";
 
 function HotelsPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const destination = searchParams.get("destination");
-  const room = JSON.parse(searchParams.get("options")).room;
-
-  const { isLoading, data } = useFetch(
-    "http://localhost:5000/hotels",
-    `q=${destination || ""}&accommodates_gte=${room || 1}`
-  );
-
   // q searches the whole data
-
+  const { isLoading, hotels } = useHotels();
   if (isLoading) return <p>Loading... </p>;
 
   return (
-    <div className="searchList flex flex-col gap-4">
-      <h2 className="text-lg font-bold mb-4">Search Result ({data.length})</h2>
-      {data.map((item) => {
+    <div className="searchList flex flex-col gap-4 ">
+      <h2 className="text-lg font-bold mb-4">
+        Search Result ({hotels.length})
+      </h2>
+      {hotels.map((item) => {
         return (
           <Link
             key={item.id}
             to={`/hotels/${item.id}?lat=${item.latitude}&lng=${item.longitude}`}
           >
-            <div className="searchItem flex gap-4">
+            <div className="searchItem flex gap-4 hover:scale-105 transition-transform duration-200 origin-left">
               <img
                 src={item.thumbnail_url}
                 alt={item.name}
                 className="rounded-2xl w-24 h-24 object-cover"
               />
-              <div className="searchItemDesc">
+              <div className="searchItemDesc ">
                 <p className="Location font-semibold hover:text-blue-700 transition-all ease-in-out delay-300">
                   {item.smart_location}
                 </p>

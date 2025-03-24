@@ -9,26 +9,29 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import HotelsLayout from "./components/HotelsLayout/HotelsLayout";
 import HotelsPage from "./components/HotelsPage/HotelsPage";
 import SingleHotelDetails from "./components/SingleHotelDetails/SingleHotelDetails";
+import HotelsProvider from "./components/context/HotelsProvider";
 
 const App = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Toaster />
-      <Navbar />
-      <div className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+    <HotelsProvider>
+      <div className="flex flex-col min-h-screen">
+        <Toaster />
+        <Navbar />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
 
-          <Route path="/hotels" element={<HotelsLayout />}>
-            <Route index element={<HotelsPage />} />
-            <Route path=":id" element={<SingleHotelDetails />} />{" "}
-          </Route>
-        </Routes>
+            <Route path="/hotels" element={<HotelsLayout />}>
+              <Route index element={<HotelsPage />} />
+              <Route path=":id" element={<SingleHotelDetails />} />{" "}
+            </Route>
+          </Routes>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+     </HotelsProvider>
   );
 };
 
