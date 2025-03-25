@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import { useHotels } from "../context/HotelsProvider";
 
 function HotelsPage() {
-  // q searches the whole data
-  const { isLoading, hotels } = useHotels();
+  const { isLoading, hotels, currentHotel } = useHotels();
   if (isLoading) return <p>Loading... </p>;
 
   return (
@@ -17,7 +16,11 @@ function HotelsPage() {
             key={item.id}
             to={`/hotels/${item.id}?lat=${item.latitude}&lng=${item.longitude}`}
           >
-            <div className="searchItem flex gap-4 hover:scale-105 transition-transform duration-200 origin-left">
+            <div
+              className={`searchItem ${
+                item.id === currentHotel?.id ? "current-hotel" : ""
+              }`}
+            >
               <img
                 src={item.thumbnail_url}
                 alt={item.name}

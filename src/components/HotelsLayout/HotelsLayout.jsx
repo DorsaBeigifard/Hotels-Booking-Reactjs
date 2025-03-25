@@ -2,11 +2,14 @@ import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { Outlet } from "react-router-dom";
 import Map from "../Map/Map";
+import { useLocation } from "react-router-dom";
 
 function HotelsLayout() {
+  const location = useLocation();
+
   return (
     <div>
-      {location.pathname === "/hotels" && (
+      {location.pathname.startsWith("/hotels") && (
         <div className="border-b border-gray-200">
           <SearchBar
             searchBarClasses="searchBar"

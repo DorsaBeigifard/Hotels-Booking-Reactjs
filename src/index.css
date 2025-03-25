@@ -9,7 +9,7 @@
   }
 
   h2 {
-    @apply text-2xl mb-2 font-medium;
+    @apply text-xl mb-2 font-medium;
   }
 
   h3 {
@@ -72,7 +72,7 @@
   }
 
   .searchItem {
-    @apply flex gap-2 items-center;
+    @apply items-center flex gap-4 hover:scale-105 transition-transform duration-200 origin-left;
   }
 
   .searchBtn {
@@ -158,4 +158,8 @@ body .slick-next::before {
 
 .overflow-y-scroll::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.current-hotel .Location {
+  @apply text-blue-700;
 }
