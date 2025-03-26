@@ -17,6 +17,7 @@ function AddNewBookmark() {
   const [isLoadingGeoCoding, setIsLoadingGeoCoding] = useState(false);
   const [geoCodingError, setGeoCodingError] = useState(null);
   const { createBookmark } = useBookmarks();
+  const [note, setNote] = useState("");
 
   useEffect(() => {
     if (!lat || !lng) return;
@@ -57,6 +58,7 @@ function AddNewBookmark() {
       latitude: lat,
       longitude: lng,
       host_location: cityName + " " + country,
+      note,
     };
     await createBookmark(newBookmark);
     navigate("/bookmarks");
@@ -94,7 +96,17 @@ function AddNewBookmark() {
             countryCode={countryCode}
           />
         </div>
-        <div className="flex justify-between items-center">
+        <div className="formControl">
+          <label htmlFor="note">Personal Note:</label>
+          <textarea
+            id="note"
+            name="note"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            className=" border border-gray-300 rounded-xl w-full min-h-[5rem] p-2 text-sm focus:outline-none focus:ring focus:ring-blue-200"
+          />
+        </div>
+        <div className="flex justify-between items-center mt-4">
           <button
             className="btn btn--back"
             onClick={(e) => {
