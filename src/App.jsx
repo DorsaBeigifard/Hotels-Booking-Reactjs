@@ -11,28 +11,40 @@ import HotelsPage from "./components/HotelsPage/HotelsPage";
 import SingleHotelDetails from "./components/SingleHotelDetails/SingleHotelDetails";
 import HotelsProvider from "./components/context/HotelsProvider";
 import "./App.css";
+import BookmarksLayout from "./components/BookmarksLayout/BookmarksLayout";
+import BookmarksListProvider from "./components/context/BookmarksListProvider";
+import BookmarksList from "./components/BookmarksList/BookmarksList";
+import SingleBookmark from "./components/SingleBookmark/SingleBookmark";
+import AddNewBookmark from "./components/AddNewBookmar/AddNewBookmark";
 
 const App = () => {
   return (
-    <HotelsProvider>
-      <div className="flex flex-col min-h-screen">
-        <Toaster />
-        <Navbar />
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
+    <BookmarksListProvider>
+      <HotelsProvider>
+        <div className="flex flex-col min-h-screen">
+          <Toaster />
+          <Navbar />
+          <div className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
 
-            <Route path="/hotels" element={<HotelsLayout />}>
-              <Route index element={<HotelsPage />} />
-              <Route path=":id" element={<SingleHotelDetails />} />{" "}
-            </Route>
-          </Routes>
+              <Route path="/hotels" element={<HotelsLayout />}>
+                <Route index element={<HotelsPage />} />
+                <Route path=":id" element={<SingleHotelDetails />} />
+              </Route>
+              <Route path="/bookmarks" element={<BookmarksLayout />}>
+                <Route index element={<BookmarksList />} />
+                <Route path=":id" element={<SingleBookmark />} />
+                <Route path="add" element={<AddNewBookmark />} />
+              </Route>
+            </Routes>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </HotelsProvider>
+      </HotelsProvider>
+    </BookmarksListProvider>
   );
 };
 

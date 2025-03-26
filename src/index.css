@@ -9,7 +9,7 @@
   }
 
   h2 {
-    @apply text-xl mb-2 font-medium;
+    @apply text-xl font-medium;
   }
 
   h3 {
@@ -161,5 +161,9 @@ body .slick-next::before {
 }
 
 .current-hotel .Location {
+  @apply text-blue-700;
+}
+
+.current-bookmark .name {
   @apply text-blue-700;
 }

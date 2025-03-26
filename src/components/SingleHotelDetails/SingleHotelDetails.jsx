@@ -14,7 +14,7 @@ function SingleHotelDetails() {
   if (isLoadingCurrHotel || !currentHotel) return <p>Loading....</p>;
 
   return (
-    <div className="room p-6 bg-white shadow-lg rounded-lg">
+    <div className="room p-6 sm:max-lg:pl-0 bg-white shadow-lg rounded-lg">
       <div className="roomDetail">
         <h2 className="text-2xl font-semibold mb-2">{currentHotel.name}</h2>
         <div className="text-gray-600 mb-4">

@@ -1,17 +1,13 @@
-import React from "react";
-import SearchBar from "../SearchBar/SearchBar";
 import { Outlet } from "react-router-dom";
 import Map from "../Map/Map";
-import { useLocation } from "react-router-dom";
-import { useHotels } from "../context/HotelsProvider";
+import SearchBar from "../SearchBar/SearchBar";
+import { useBookmarks } from "../context/BookmarksListProvider";
 
-function HotelsLayout() {
-  const location = useLocation();
-  const { hotels } = useHotels();
-
+function BookmarksLayout() {
+  const { bookmarks } = useBookmarks();
   return (
     <div>
-      {location.pathname.startsWith("/hotels") && (
+      {location.pathname.startsWith("/bookmarks") && (
         <div className="border-b border-gray-200">
           <SearchBar
             searchBarClasses="searchBar"
@@ -24,10 +20,10 @@ function HotelsLayout() {
         <div className="h-[45%] lg:h-full lg:w-[45%] overflow-y-scroll overflow-x-hidden pr-4 pt-4">
           <Outlet />
         </div>
-        <Map markerLocations={hotels} />
+        <Map markerLocations={bookmarks} />
       </div>
     </div>
   );
 }
 
-export default HotelsLayout;
+export default BookmarksLayout;
