@@ -40,11 +40,13 @@ function SingleBookmark() {
   return (
     <div className="p-6">
       <button
-        onClick={handleBack}
-        className="text-xs text-gray-500 flex items-center gap-1 mb-4 cursor-pointer hover:text-blue-700"
+        className="btn btn--back"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate(-1);
+        }}
       >
-        <IoChevronBackOutline className="inline-block text-base" /> Back to
-        Bookmarks
+        &larr; Back
       </button>
 
       <h2 className="font-semibold text-xl">{currentBookmark.cityName}</h2>

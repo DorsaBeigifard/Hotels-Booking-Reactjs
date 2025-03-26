@@ -51,8 +51,16 @@
 
 @layer components {
   .btn {
+    @apply py-1 px-4 rounded-lg cursor-pointer transition delay-150 duration-300 ease-in-out hover:bg-yellow-500;
+  }
+
+  .btn--primary {
     background-color: var(--color-primary-700);
-    @apply text-white py-1 px-2 text-sm rounded-lg cursor-pointer transition delay-150 duration-300 ease-in-out hover:bg-yellow-500;
+    @apply text-white;
+  }
+
+  .btn--back {
+    @apply text-sm text-gray-500 hover:text-white border border-gray-400;
   }
 
   .input {
@@ -113,6 +121,18 @@
 
   .locationBtn {
     @apply px-2 py-1 font-bold text-white bg-blue-700 rounded-md shadow-[0_0_10px_rgba(29,78,216,0.8)] absolute bottom-4 left-4 z-[1000] hover:bg-yellow-500 transition-all delay-300 ease-in-out cursor-pointer;
+  }
+
+  .formControl {
+    @apply flex flex-col relative;
+  }
+
+  .formControl input {
+    @apply mb-4 border border-gray-300 rounded-xl w-full p-2 text-sm focus:outline-none focus:ring focus:ring-blue-200;
+  }
+
+  .formControl label {
+    @apply mb-2;
   }
 }
 

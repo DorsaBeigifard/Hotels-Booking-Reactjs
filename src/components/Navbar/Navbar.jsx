@@ -18,7 +18,7 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden sm:flex items-center gap-6">
           <RenderNavLinks setIsOpen={setIsOpen} />
-          <button className="btn LoginBtn">Login</button>
+          <button className="btn btn--primary">Login</button>
         </div>
 
         {/* Mobile Menu */}
@@ -30,7 +30,7 @@ const Navbar = () => {
               <FiMenu className="text-2xl" />
             )}
           </button>
-          <button className="btn">Login</button>
+          <button className="btn btn--primary">Login</button>
         </div>
       </div>
 
