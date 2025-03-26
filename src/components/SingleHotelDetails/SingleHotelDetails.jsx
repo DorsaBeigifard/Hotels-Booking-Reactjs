@@ -38,7 +38,7 @@ function SingleHotelDetails() {
           <img
             src={currentHotel.host_picture_url}
             alt={currentHotel.host_name}
-            className="h-12 w-12 rounded-full border"
+            className="h-12 w-12 rounded-full border object-cover"
           />
           <div>
             <p className="font-medium">Host: {currentHotel.host_name}</p>
