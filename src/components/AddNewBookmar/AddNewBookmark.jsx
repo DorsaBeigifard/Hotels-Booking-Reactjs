@@ -59,7 +59,7 @@ function AddNewBookmark() {
       host_location: cityName + " " + country,
     };
     await createBookmark(newBookmark);
-    navigate("/bookmark");
+    navigate("/bookmarks");
   };
 
   if (isLoadingGeoCoding) return <div>loading</div>;
@@ -70,7 +70,7 @@ function AddNewBookmark() {
       <h2 className="font-semibold text-xl mb-4">Bookmark New Location</h2>
       <form className="form" onSubmit={handleSubmit}>
         <div className="formControl">
-          <label htmlFor="cityName">CityName</label>
+          <label htmlFor="cityName">City name</label>
           <input
             value={cityName}
             onChange={(e) => setCityName(e.target.value)}
@@ -89,7 +89,7 @@ function AddNewBookmark() {
             id="country"
           />
           <ReactCountryFlag
-            className="absolute top-[50%] right-4 "
+            className="absolute top-[48%] right-4 "
             svg
             countryCode={countryCode}
           />

@@ -7,12 +7,8 @@ import ReactCountryFlag from "react-country-flag";
 function SingleBookmark() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const {
-    getBookmark,
-    currentBookmark,
-    isLoadingCurrBookmark,
-    updateBookmark,
-  } = useBookmarks();
+  const { getBookmark, currentBookmark, isLoading, updateBookmark } =
+    useBookmarks();
 
   const [isEditing, setIsEditing] = useState(false);
   const [note, setNote] = useState("");
@@ -27,7 +23,7 @@ function SingleBookmark() {
     }
   }, [currentBookmark]);
 
-  if (isLoadingCurrBookmark || !currentBookmark) return <p>Loading....</p>;
+  if (isLoading || !currentBookmark) return <p>Loading....</p>;
 
   const handleBack = () => navigate(-1);
 
@@ -40,7 +36,7 @@ function SingleBookmark() {
   return (
     <div className="p-6">
       <button
-        className="btn btn--back"
+        className="btn btn--back mb-4"
         onClick={(e) => {
           e.preventDefault();
           navigate(-1);
