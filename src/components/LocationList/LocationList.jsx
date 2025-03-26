@@ -11,7 +11,7 @@ const SlickButtonFix = ({ currentSlide, slideCount, children, ...props }) => (
 function LocationList() {
   const { data, isLoading } = useFetch("http://localhost:5000/hotels", "");
 
-  if (isLoading) return <p>Loading... </p>;
+  if (isLoading) return <Loader />;
 
   const settings = {
     dots: true,

@@ -3,7 +3,7 @@ import { useHotels } from "../context/HotelsProvider";
 
 function HotelsPage() {
   const { isLoading, hotels, currentHotel } = useHotels();
-  if (isLoading) return <p>Loading... </p>;
+  if (isLoading) return <Loader />;
 
   return (
     <div className="searchList flex flex-col gap-4 ">

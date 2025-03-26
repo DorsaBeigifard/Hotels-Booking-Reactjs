@@ -33,7 +33,7 @@ function Map({ markerLocations }) {
   }, [geoLocationPosition]);
 
   return (
-    <div className="map flex-1 ">
+    <div className="map flex-1 relative z-0 ">
       <MapContainer
         className="h-full"
         center={mapCenter}

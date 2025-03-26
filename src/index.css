@@ -76,7 +76,11 @@
   }
 
   .searchBar {
-    @apply bg-white  container mx-auto  flex flex-col lg:flex-row  gap-6 lg:px-20 lg:items-center lg:justify-between p-2  lg:p-4 w-full;
+    @apply bg-white  container mx-auto  flex flex-col lg:flex-row  gap-6 lg:px-20 lg:items-center lg:justify-between p-2  lg:p-4 w-full z-1;
+  }
+
+  .searchBarItem {
+    @apply items-center flex gap-4;
   }
 
   .searchItem {

@@ -4,6 +4,8 @@ import axios from "axios";
 import ReactCountryFlag from "react-country-flag";
 import { useBookmarks } from "../context/BookmarksListProvider";
 import useURLLocation from "../../hooks/useURLLocation";
+import toast from "react-hot-toast";
+import Loader from "../Loader/Loader";
 
 const BASE_GEOCODING_URL =
   "https://api.bigdatacloud.net/data/reverse-geocode-client";
@@ -31,15 +33,13 @@ function AddNewBookmark() {
         );
 
         if (!data.countryCode)
-          throw new Error(
-            "this location is not a city! please click somewhere else."
-          );
+          throw new Error("This location is not a city! Click somewhere else.");
 
         setCityName(data.city || data.locality || "");
         setCountry(data.countryName);
-        setCountryCode(data.countryCode); // FR, IR ,...
+        setCountryCode(data.countryCode);
       } catch (error) {
-        setGeoCodingError(error.message);
+        toast.error(error.message);
       } finally {
         setIsLoadingGeoCoding(false);
       }
@@ -64,12 +64,13 @@ function AddNewBookmark() {
     navigate("/bookmarks");
   };
 
-  if (isLoadingGeoCoding) return <div>loading</div>;
+  if (isLoadingGeoCoding) return <Loader />;
   if (geoCodingError) return <storng>{geoCodingError}</storng>;
 
   return (
     <div>
-      <h2 className="font-semibold text-xl mb-4">Bookmark New Location</h2>
+      <h2 className="font-semibold text-xl ">Bookmark New Location</h2>
+      <p className="mb-4 text-sm">Add new locations by clicking on the map.</p>
       <form className="form" onSubmit={handleSubmit}>
         <div className="formControl">
           <label htmlFor="cityName">City name</label>

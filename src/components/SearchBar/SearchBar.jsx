@@ -73,7 +73,7 @@ function SearchBar({ searchBarClasses, dateAbsolut, optionAbsolut }) {
   return (
     <div>
       <div className={`${searchBarClasses}`}>
-        <div className="searchItem">
+        <div className="searchBarItem">
           <MdLocationOn className="text-red-600 searchBarIcon " />
           <input
             value={destination}
@@ -86,7 +86,7 @@ function SearchBar({ searchBarClasses, dateAbsolut, optionAbsolut }) {
           />
         </div>
 
-        <div className="searchItem ">
+        <div className="searchBarItem ">
           <HiCalendar className="searchBarIcon dateIcon text-blue-800" />
           <div
             className="cursor-pointer"
@@ -109,7 +109,7 @@ function SearchBar({ searchBarClasses, dateAbsolut, optionAbsolut }) {
             />
           )}
         </div>
-        <div className="searchItem  ">
+        <div className="searchBarItem  ">
           <div
             id="optionDropDown"
             onClick={() => setOpenOptions(!openOptions)}
@@ -128,7 +128,7 @@ function SearchBar({ searchBarClasses, dateAbsolut, optionAbsolut }) {
             />
           )}
         </div>
-        <div className=" searchItem  flex items-center justify-center gap-2">
+        <div className=" searchBarItem  flex items-center justify-center gap-2">
           <button className="searchBtn" onClick={handleSearch}>
             <HiSearch className="searchBarIcon hidden lg:inline " />
             <span className="lg:hidden">Search for Deals</span>

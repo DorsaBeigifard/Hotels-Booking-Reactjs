@@ -2,11 +2,12 @@ import ReactCountryFlag from "react-country-flag";
 import { useBookmarks } from "../context/BookmarksListProvider";
 import { Link } from "react-router-dom";
 import { IoChevronForward } from "react-icons/io5";
+import Loader from "../Loader/Loader";
 
 function BookmarksList() {
   const { isLoading, bookmarks, currentBookmark } = useBookmarks();
 
-  if (isLoading) return <div className="text-center py-10">Loading...</div>;
+  if (isLoading) return <Loader />;
 
   return (
     <div>

@@ -15,8 +15,8 @@ function HotelsLayout() {
         <div className="border-b border-gray-200">
           <SearchBar
             searchBarClasses="searchBar"
-            dateAbsolut="top-30 right-145"
-            optionAbsolut="top-30"
+            dateAbsolut="top-25 left-1/2 transform -translate-x-1/2"
+            optionAbsolut="top-25"
           />
         </div>
       )}

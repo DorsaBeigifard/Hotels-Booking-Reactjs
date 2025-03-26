@@ -3,6 +3,7 @@ import { useBookmarks } from "../context/BookmarksListProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoChevronBackOutline } from "react-icons/io5";
 import ReactCountryFlag from "react-country-flag";
+import Loader from "../Loader/Loader";
 
 function SingleBookmark() {
   const { id } = useParams();
@@ -23,7 +24,7 @@ function SingleBookmark() {
     }
   }, [currentBookmark]);
 
-  if (isLoading || !currentBookmark) return <p>Loading....</p>;
+  if (isLoading || !currentBookmark) return <Loader />;
 
   const handleBack = () => navigate(-1);
 
@@ -34,7 +35,7 @@ function SingleBookmark() {
   };
 
   return (
-    <div className="p-6">
+    <div className="">
       <button
         className="btn btn--back mb-4"
         onClick={(e) => {
