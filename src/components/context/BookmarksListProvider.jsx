@@ -26,7 +26,6 @@ function BookmarksListProvider({ children }) {
     fetchBookmarkList();
   }, []);
 
-  // Get a single bookmark by ID
   async function getBookmark(id) {
     setIsLoading(true);
     setCurrentBookmark(null);
@@ -46,6 +45,7 @@ function BookmarksListProvider({ children }) {
       const { data } = await axios.post(`${BASE_URL}/bookmarks/`, newBookmark);
       setCurrentBookmark(data);
       setBookmarks((prev) => [...prev, data]);
+      toast.success("Bookmark added successfully!");
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -66,6 +66,20 @@ function BookmarksListProvider({ children }) {
     }
   }
 
+  async function deleteBookmark(id) {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.delete(`${BASE_URL}/bookmarks/${id}`);
+      toast.success("Bookmark deleted successfully!");
+      setCurrentBookmark(data);
+      setBookmarks((prev) => prev.filter((item) => item.id !== id));
+    } catch (error) {
+      toast.error("Error deleting bookmark.");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <BookmarksContext.Provider
       value={{
@@ -75,6 +89,7 @@ function BookmarksListProvider({ children }) {
         getBookmark,
         updateBookmark,
         createBookmark,
+        deleteBookmark,
       }}
     >
       {children}

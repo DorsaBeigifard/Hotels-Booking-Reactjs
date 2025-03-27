@@ -3,12 +3,25 @@ import { useBookmarks } from "../context/BookmarksListProvider";
 import { Link } from "react-router-dom";
 import { IoChevronForward } from "react-icons/io5";
 import Loader from "../Loader/Loader";
+import { IoTrashBinOutline } from "react-icons/io5";
 
 function BookmarksList() {
-  const { isLoading, bookmarks, currentBookmark } = useBookmarks();
+  const { isLoading, bookmarks, currentBookmark, deleteBookmark } =
+    useBookmarks();
+
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+    await deleteBookmark(id);
+  };
 
   if (isLoading) return <Loader />;
-
+  if (!bookmarks.length)
+    return (
+      <p>
+        You currently have no bookmarks. <br />
+        Add bookmarks by clicking on the map.
+      </p>
+    );
   return (
     <div>
       <h2 className="text-lg font-bold mb-4">Your Bookmarks</h2>
@@ -37,8 +50,16 @@ function BookmarksList() {
                   <span className="text-sm text-gray-500">{item.country}</span>
                 </div>
               </div>
-              <div className="text-blue-700">
-                <span className="material-icons">
+              <div className="flex gap-8 items-center">
+                <span
+                  className="text-red-700 hover:text-yellow-500"
+                  onClick={(e) => {
+                    handleDelete(e, item.id);
+                  }}
+                >
+                  <IoTrashBinOutline />
+                </span>
+                <span className="text-blue-700 hover:text-yellow-500">
                   <IoChevronForward />
                 </span>
               </div>

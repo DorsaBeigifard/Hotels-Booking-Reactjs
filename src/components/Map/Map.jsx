@@ -37,7 +37,7 @@ function Map({ markerLocations }) {
       <MapContainer
         className="h-full"
         center={mapCenter}
-        zoom={8}
+        zoom={5}
         scrollWheelZoom={false}
       >
         <button className="locationBtn" onClick={getPosition}>

@@ -79,7 +79,7 @@ function SingleHotelDetails() {
             href={currentHotel.listing_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn"
+            className="btn btn--primary"
           >
             View on Airbnb
           </a>
