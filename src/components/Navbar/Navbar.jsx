@@ -1,9 +1,16 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
+import { IoBookmark } from "react-icons/io5";
+import { TiHeart } from "react-icons/ti";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleBookmarkClick = () => {
+    navigate("/bookmarks");
+  };
   return (
     <div className="z-10 py-1  border border-b-1 border-gray-200 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
@@ -13,11 +20,23 @@ const Navbar = () => {
             alt="logo"
             className="h-8"
           />
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleBookmarkClick}
+              className="text-xl text-yellow-500 cursor-pointer transition-transform transform hover:scale-125"
+            >
+              <IoBookmark />
+            </button>
+            <button className="text-xl text-red-700 cursor-pointer transition-transform transform hover:scale-125">
+              <TiHeart />
+            </button>
+          </div>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden sm:flex items-center gap-6">
           <RenderNavLinks setIsOpen={setIsOpen} />
+
           <button className="btn btn--primary">Login</button>
         </div>
 
