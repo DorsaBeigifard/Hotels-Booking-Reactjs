@@ -21,15 +21,10 @@ This is a fully responsive web application for exploring and booking hotels in v
 - **React Context API**: For global state management (e.g., managing favorites, bookmarks).
 - **React Icons**: For adding icons to the UI.
 
-## Screenshots
+## Screenshot
 
 ![Home Page](/screenshots/desktop-homepage.png)
-![Home Page](/screenshots/mobile-homepage.png)
 
-![Home Page](/screenshots/hotelslist-desktop.png)
-![Home Page](/screenshots/bookmarks-desktop.png)
-![Home Page](/screenshots/bookmarks-edit.png)
-![Home Page](/screenshots/favorites.png)
 
 ## Installation
 
