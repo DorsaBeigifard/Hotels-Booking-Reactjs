@@ -2,24 +2,47 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { useHotels } from "../context/HotelsProvider";
 import { useEffect } from "react";
+import { useFavorites } from "../context/FavoritesProvider";
+import { TiHeart, TiHeartOutline } from "react-icons/ti";
 
 function SingleHotelDetails() {
   const { id } = useParams();
   const { getHotel, isLoadingCurrHotel, currentHotel } = useHotels();
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
 
   useEffect(() => {
     getHotel(id);
   }, [id]);
+
+  const handleFavorite = (e, item) => {
+    e.preventDefault();
+    const isFavorite = favorites.some((fav) => fav.id === item.id);
+    isFavorite ? removeFavorite(item) : addFavorite(item);
+  };
 
   if (isLoadingCurrHotel || !currentHotel) return <p>Loading....</p>;
 
   return (
     <div className="room p-6 sm:max-lg:pl-0 bg-white shadow-lg rounded-lg">
       <div className="roomDetail">
-        <h2 className="text-2xl font-semibold mb-2">{currentHotel.name}</h2>
-        <div className="text-gray-600 mb-4">
-          {currentHotel.smart_location} &bull; {currentHotel.number_of_reviews}{" "}
-          reviews
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-2xl font-semibold mb-2">{currentHotel.name}</h2>
+            <div className="text-gray-600 mb-4">
+              {currentHotel.smart_location} &bull;{" "}
+              {currentHotel.number_of_reviews} reviews
+            </div>
+          </div>
+          <button
+            className="text-2xl text-red-700 cursor-pointer transition-transform transform hover:scale-125 "
+            onClick={(e) => handleFavorite(e, currentHotel)}
+          >
+            {favorites.some((fav) => fav.id === currentHotel.id) ? (
+              <TiHeart />
+            ) : (
+              <TiHeartOutline />
+            )}
+          </button>
         </div>
         <img
           src={currentHotel.xl_picture_url}

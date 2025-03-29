@@ -11,6 +11,10 @@ const Navbar = () => {
   const handleBookmarkClick = () => {
     navigate("/bookmarks");
   };
+
+  const handleFavoritesCLick = () => {
+    navigate("/hotels/favorites");
+  };
   return (
     <div className="z-10 py-1  border border-b-1 border-gray-200 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
@@ -27,7 +31,10 @@ const Navbar = () => {
             >
               <IoBookmark />
             </button>
-            <button className="text-xl text-red-700 cursor-pointer transition-transform transform hover:scale-125">
+            <button
+              onClick={handleFavoritesCLick}
+              className="text-xl text-red-700 cursor-pointer transition-transform transform hover:scale-125"
+            >
               <TiHeart />
             </button>
           </div>

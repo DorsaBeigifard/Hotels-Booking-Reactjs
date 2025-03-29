@@ -17,6 +17,7 @@ import BookmarksList from "./components/BookmarksList/BookmarksList";
 import SingleBookmark from "./components/SingleBookmark/SingleBookmark";
 import AddNewBookmark from "./components/AddNewBookmar/AddNewBookmark";
 import { FavoritesProvider } from "./components/context/FavoritesProvider";
+import FavoriteHotels from "./components/FavoriteHotels/FavoriteHotels";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
                 <Route path="/hotels" element={<HotelsLayout />}>
                   <Route index element={<HotelsPage />} />
                   <Route path=":id" element={<SingleHotelDetails />} />
+                  <Route path="favorites" element={<FavoriteHotels />} />
                 </Route>
                 <Route path="/bookmarks" element={<BookmarksLayout />}>
                   <Route index element={<BookmarksList />} />
