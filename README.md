@@ -23,7 +23,7 @@ This is a fully responsive web application for exploring and booking hotels in v
 
 ## Screenshot
 
-<img src="/screenshots/desktop-homepage.png" alt="Home Page" width="600" height="400"/>
+<img src="/screenshots/desktop-homepage.png" alt="Home Page" height="400"/>
 
 ## Installation
 
@@ -33,7 +33,7 @@ This is a fully responsive web application for exploring and booking hotels in v
    ```
 2. Navigate into the project folder.
    ```bash
-    cd <project-folder>
+    cd Hotels-Booking-Reactjs
    ```
 3. Install the dependencies.
    ```bash
