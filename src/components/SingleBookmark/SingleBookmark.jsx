@@ -26,8 +26,6 @@ function SingleBookmark() {
 
   if (isLoading || !currentBookmark) return <Loader />;
 
-  const handleBack = () => navigate(-1);
-
   const handleSaveNote = (e) => {
     e.preventDefault();
     updateBookmark(id, { ...currentBookmark, note });
