@@ -23,8 +23,7 @@ This is a fully responsive web application for exploring and booking hotels in v
 
 ## Screenshot
 
-![Home Page](/screenshots/desktop-homepage.png)
-
+<img src="/screenshots/desktop-homepage.png" alt="Home Page" width="600" height="400"/>
 
 ## Installation
 
