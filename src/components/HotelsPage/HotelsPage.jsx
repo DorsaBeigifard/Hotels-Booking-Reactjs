@@ -18,7 +18,7 @@ function HotelsPage() {
 
   return (
     <div className="searchList flex flex-col gap-4">
-      <h2 className="text-lg font-bold mb-4">
+      <h2 className="text-lg font-bold mb-4 px-4">
         Search Result ({hotels.length})
       </h2>
       {hotels.map((item) => {
@@ -29,7 +29,7 @@ function HotelsPage() {
             key={item.id}
             to={`/hotels/${item.id}?lat=${item.latitude}&lng=${item.longitude}`}
           >
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center px-4">
               <div
                 className={`searchItem ${
                   item.id === currentHotel?.id ? "current-hotel" : ""

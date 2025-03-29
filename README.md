@@ -1,12 +1,55 @@
-# React + Vite
+# Hotel Booking App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a fully responsive web application for exploring and booking hotels in various countries around the world. Built with **React**, **Tailwind CSS**, and a **JSON server** backend, this app offers features like searching hotels, viewing detailed hotel information, saving favorite hotels, bookmarking cities with personalized notes. Additionally, user authentication is implemented for a smooth experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Search and Filter**: Search through hotels from various countries using a dynamic filter.
+- **Map Integration**: View hotels location on a map using markers.
+- **Hotel Details**: Get detailed information about a hotel, including room types, guest capacity, pricing, and host details.
+- **Favorites**: Save your favorite hotels and easily access them later.
+- **Bookmarks**: Bookmark your favorite cities with personalized notes and save them for future reference.
+- **User Authentication**: Login and authenticate users for a personalized experience.
+- **Fully Responsive**: The app is optimized for both desktop and mobile devices.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React**: For building the user interface.
+- **Tailwind CSS**: For styling and ensuring a responsive design.
+- **React Router**: For navigation between pages.
+- **JSON Server**: For simulating a backend and providing data.
+- **React Context API**: For global state management (e.g., managing favorites, bookmarks).
+- **React Icons**: For adding icons to the UI.
+
+## Screenshots
+
+![Home Page](/screenshots/desktop-homepage.png)
+![Home Page](/screenshots/mobile-homepage.png)
+
+![Home Page](/screenshots/hotelslist-desktop.png)
+![Home Page](/screenshots/bookmarks-desktop.png)
+![Home Page](/screenshots/bookmarks-edit.png)
+![Home Page](/screenshots/favorites.png)
+
+## Installation
+
+1. Clone this repository to your local machine.
+   ```bash
+   git clone https://github.com/DorsaBeigifard/Hotels-Booking-Reactjs
+   ```
+2. Navigate into the project folder.
+   ```bash
+    cd <project-folder>
+   ```
+3. Install the dependencies.
+   ```bash
+    npm install
+   ```
+4. Start the json server.
+   ```bash
+    npm run server
+   ```
+5. run the app.
+   ```bash
+    npm run dev
+   ```
