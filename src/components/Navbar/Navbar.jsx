@@ -97,7 +97,7 @@ function RenderNavLinks({ setIsOpen }) {
 }
 
 function User() {
-  const { user, isAuthorized, logout } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -107,7 +107,7 @@ function User() {
 
   return (
     <>
-      {isAuthorized ? (
+      {isAuthenticated ? (
         <div className="flex items-center gap-1 text-blue-700">
           <span>{user.name}</span>
           <button onClick={handleLogout} className=" cursor-pointer text-2xl">

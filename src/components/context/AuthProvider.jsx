@@ -10,7 +10,7 @@ const AuthContext = createContext();
 
 const initialState = {
   user: null,
-  isAuthorized: false,
+  isAuthenticated: false,
 };
 
 function authReducer(state, action) {
@@ -18,13 +18,13 @@ function authReducer(state, action) {
     case "login":
       return {
         user: action.payload,
-        isAuthorized: true,
+        isAuthenticated: true,
       };
 
     case "logout":
       return {
         user: null,
-        isAuthorized: false,
+        isAuthenticated: false,
       };
 
     default:
@@ -33,7 +33,7 @@ function authReducer(state, action) {
 }
 
 export default function AuthProvider({ children }) {
-  const [{ user, isAuthorized }, dispatch] = useReducer(
+  const [{ user, isAuthenticated }, dispatch] = useReducer(
     authReducer,
     initialState
   );
@@ -48,7 +48,7 @@ export default function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthorized, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Example() {
   const [email, setEmail] = useState("user@email.com");
   const [password, setPassword] = useState("1234");
-  const { user, isAuthorized, login } = useAuth();
+  const { user, isAuthenticated, login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -16,8 +16,8 @@ export default function Example() {
   };
 
   useEffect(() => {
-    if (isAuthorized) navigate("/", { replace: true }); //doesn't remember /login
-  }, [isAuthorized, navigate]);
+    if (isAuthenticated) navigate("/", { replace: true }); //doesn't remember /login
+  }, [isAuthenticated, navigate]);
 
   return (
     <>
