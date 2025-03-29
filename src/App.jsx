@@ -20,6 +20,7 @@ import { FavoritesProvider } from "./components/context/FavoritesProvider";
 import FavoriteHotels from "./components/FavoriteHotels/FavoriteHotels";
 import AuthProvider from "./components/context/AuthProvider";
 import Login from "./components/Login/Login";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   return (
@@ -40,9 +41,23 @@ const App = () => {
                   <Route path="/hotels" element={<HotelsLayout />}>
                     <Route index element={<HotelsPage />} />
                     <Route path=":id" element={<SingleHotelDetails />} />
-                    <Route path="favorites" element={<FavoriteHotels />} />
+                    <Route
+                      path="favorites"
+                      element={
+                        <ProtectedRoute>
+                          <FavoriteHotels />
+                        </ProtectedRoute>
+                      }
+                    />
                   </Route>
-                  <Route path="/bookmarks" element={<BookmarksLayout />}>
+                  <Route
+                    path="/bookmarks"
+                    element={
+                      <ProtectedRoute>
+                        <BookmarksLayout />
+                      </ProtectedRoute>
+                    }
+                  >
                     <Route index element={<BookmarksList />} />
                     <Route path=":id" element={<SingleBookmark />} />
                     <Route path="add" element={<AddNewBookmark />} />
