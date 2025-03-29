@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
-import { IoBookmark } from "react-icons/io5";
+import { IoBookmark, IoLogOut } from "react-icons/io5";
 import { TiHeart } from "react-icons/ti";
+import { useAuth } from "../context/AuthProvider";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +16,7 @@ const Navbar = () => {
   const handleFavoritesCLick = () => {
     navigate("/hotels/favorites");
   };
+
   return (
     <div className="z-10 py-1  border border-b-1 border-gray-200 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
@@ -44,7 +46,7 @@ const Navbar = () => {
         <div className="hidden sm:flex items-center gap-6">
           <RenderNavLinks setIsOpen={setIsOpen} />
 
-          <button className="btn btn--primary">Login</button>
+          <User />
         </div>
 
         {/* Mobile Menu */}
@@ -56,7 +58,7 @@ const Navbar = () => {
               <FiMenu className="text-2xl" />
             )}
           </button>
-          <button className="btn btn--primary">Login</button>
+          <User />
         </div>
       </div>
 
@@ -92,4 +94,31 @@ function RenderNavLinks({ setIsOpen }) {
       {text}
     </NavLink>
   ));
+}
+
+function User() {
+  const { user, isAuthorized, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
+  return (
+    <>
+      {isAuthorized ? (
+        <div className="flex items-center gap-1 text-blue-700">
+          <span>{user.name}</span>
+          <button onClick={handleLogout} className=" cursor-pointer text-2xl">
+            <IoLogOut />
+          </button>
+        </div>
+      ) : (
+        <Link to="/login" className="btn btn--primary">
+          Login
+        </Link>
+      )}
+    </>
+  );
 }
