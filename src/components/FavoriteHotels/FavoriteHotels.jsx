@@ -3,9 +3,11 @@ import { useFavorites } from "../context/FavoritesProvider";
 import { useHotels } from "../context/HotelsProvider";
 import { Link, useNavigate } from "react-router-dom"; // Don't forget to import Link
 import { TiHeart, TiHeartOutline } from "react-icons/ti"; // Ensure these icons are imported
+import { useAuth } from "../context/AuthProvider";
 
 function FavoriteHotels() {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const { isAuthenticated } = useAuth();
   const { hotels, currentHotel } = useHotels();
   const navigate = useNavigate();
 
@@ -22,16 +24,20 @@ function FavoriteHotels() {
   if (favorites.length === 0) {
     return (
       <div>
-        {" "}
         <p>
           No hotel was added to the favorite list... &nbsp;
-          <span onClick={handleReturn} className=" cursor-pointer text-blue-500 underline">
+          <span
+            onClick={handleReturn}
+            className=" cursor-pointer text-blue-500 underline"
+          >
             return to hotels list
           </span>
         </p>
       </div>
-    ); // Make the message more presentable
+    );
   }
+
+  if (!isAuthenticated) return;
 
   return (
     <div className="searchList flex flex-col gap-4">
@@ -39,7 +45,6 @@ function FavoriteHotels() {
         Favorite Hotels ({favorites.length})
       </h2>
       {favorites.map((item) => {
-        // Since item is from the favorites list, you don’t need to check against hotels here
         return (
           <Link
             key={item.id}
