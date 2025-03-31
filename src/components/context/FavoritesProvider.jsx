@@ -1,5 +1,7 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 import axios from "axios";
+import { useAuth } from "./AuthProvider";
+import toast from "react-hot-toast";
 
 const initialState = {
   favorites: [],
@@ -31,6 +33,8 @@ const favoriteReducer = (state, action) => {
           (fav) => fav.id !== action.payload.id
         ),
       };
+    case "favorites/clear": // ✅ New action to clear state locally
+      return { ...state, favorites: [] };
 
     case "rejected":
       return {
@@ -46,6 +50,7 @@ const FavoritesContext = createContext();
 const BASE_URL = "http://localhost:5000";
 
 export const FavoritesProvider = ({ children }) => {
+  const { isAuthenticated } = useAuth();
   const [{ favorites, isLoading }, dispatch] = useReducer(
     favoriteReducer,
     initialState
@@ -63,10 +68,16 @@ export const FavoritesProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    fetchFavorites();
-  }, []);
+    if (isAuthenticated) {
+      fetchFavorites();
+    } else {
+      dispatch({ type: "favorites/clear" }); // ✅ Clear favorites locally when logged out
+    }
+  }, [isAuthenticated]);
 
   async function addFavorite(hotel) {
+    if (!isAuthenticated) return toast.error("Login to add to favorites");
+
     try {
       const { data } = await axios.post(`${BASE_URL}/favoritehotels`, hotel);
       dispatch({ type: "favorite/add", payload: data });

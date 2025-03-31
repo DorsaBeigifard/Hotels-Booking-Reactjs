@@ -16,7 +16,7 @@ export default function Example() {
   };
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/", { replace: true }); //doesn't remember /login
+    if (isAuthenticated) navigate("/", { replace: true }); 
   }, [isAuthenticated, navigate]);
 
   return (

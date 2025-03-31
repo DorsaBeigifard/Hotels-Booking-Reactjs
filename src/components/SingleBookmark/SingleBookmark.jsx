@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useBookmarks } from "../context/BookmarksListProvider";
 import { useNavigate, useParams } from "react-router-dom";
-import { IoChevronBackOutline } from "react-icons/io5";
 import ReactCountryFlag from "react-country-flag";
 import Loader from "../Loader/Loader";
 

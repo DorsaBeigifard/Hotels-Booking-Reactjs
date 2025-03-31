@@ -3,6 +3,7 @@ import { useHotels } from "../context/HotelsProvider";
 import Loader from "../Loader/Loader";
 import { TiHeart, TiHeartOutline } from "react-icons/ti";
 import { useFavorites } from "../context/FavoritesProvider";
+import { useAuth } from "../context/AuthProvider";
 
 function HotelsPage() {
   const { isLoading, hotels, currentHotel } = useHotels();

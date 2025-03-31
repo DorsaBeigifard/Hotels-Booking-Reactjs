@@ -1,8 +1,8 @@
 import React from "react";
 import { useFavorites } from "../context/FavoritesProvider";
 import { useHotels } from "../context/HotelsProvider";
-import { Link, useNavigate } from "react-router-dom"; // Don't forget to import Link
-import { TiHeart, TiHeartOutline } from "react-icons/ti"; // Ensure these icons are imported
+import { Link, useNavigate } from "react-router-dom"; 
+import { TiHeart, TiHeartOutline } from "react-icons/ti"; 
 import { useAuth } from "../context/AuthProvider";
 
 function FavoriteHotels() {
