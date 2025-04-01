@@ -33,7 +33,7 @@ const favoriteReducer = (state, action) => {
           (fav) => fav.id !== action.payload.id
         ),
       };
-    case "favorites/clear": // ✅ New action to clear state locally
+    case "favorites/clear":
       return { ...state, favorites: [] };
 
     case "rejected":
@@ -71,7 +71,7 @@ export const FavoritesProvider = ({ children }) => {
     if (isAuthenticated) {
       fetchFavorites();
     } else {
-      dispatch({ type: "favorites/clear" }); // ✅ Clear favorites locally when logged out
+      dispatch({ type: "favorites/clear" });
     }
   }, [isAuthenticated]);
 
